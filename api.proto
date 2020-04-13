@@ -60,7 +60,7 @@ message SubscribeRequest {
     int64         startOffset    = 4 [jstype=JS_STRING]; // Offset to begin consuming from
     int64         startTimestamp = 5 [jstype=JS_STRING]; // Timestamp to begin consuming from
     bool          readISRReplica    = 6;  // Subscribe from a random ISR replica instead of choosing explicitly leader
-    bool          readnonISRFollower =7; // Subscribe from a random follower replica which is not an ISR replica
+    bool          ReadNonISRFollower =7; // Subscribe from a random follower replica which is not an ISR replica
 }
 
 // FetchMetadataRequest is sent to retrieve the latest cluster metadata.
@@ -118,6 +118,7 @@ message PartitionMetadata {
     string           leader   = 2; // Broker id of the partition leader
     repeated string  replicas = 3; // Broker ids of the partition replicas
     repeated string  isr      = 4; // Broker ids of the in-sync replica set
+    repeated string  nonisrfollower = 5; // Broker ids of the replicas which are not in in-sync replica set
 }
 
 // AckPolicy controls the behavior of message acknowledgements.
