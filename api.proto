@@ -10,6 +10,7 @@ message CreateStreamRequest {
     string group             = 3; // Partitions NATS subject amongst group members
     int32  replicationFactor = 4; // Number of stream replicas
     int32  partitions        = 5; // Number of stream partitions
+    int32  replicationFactornonISR =6; // Number of non ISR stream repicas
 }
 
 // CreateStreamResponse is sent by server after creating a stream.
@@ -59,6 +60,7 @@ message SubscribeRequest {
     int64         startOffset    = 4 [jstype=JS_STRING]; // Offset to begin consuming from
     int64         startTimestamp = 5 [jstype=JS_STRING]; // Timestamp to begin consuming from
     bool          readISRReplica    = 6;  // Subscribe from a random ISR replica instead of choosing explicitly leader
+    bool          readnonISRFollower =7; // Subscribe from a random follower replica which is not an ISR replica
 }
 
 // FetchMetadataRequest is sent to retrieve the latest cluster metadata.
